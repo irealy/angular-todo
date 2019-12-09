@@ -1,0 +1,11 @@
+<div class="todo-list">
+  <app-todo-item
+    *ngFor="let item of list; trackBy: trackByFn"
+    [heading]="item.heading"
+    [id]="item.id"
+    [checked]="item.checked"
+    (handleUpdate)="update($event)"
+    (handleDelete)="delete($event)"
+    (handleUpdateHeading)="updateHeading($event)"
+  ></app-todo-item>
+</div>

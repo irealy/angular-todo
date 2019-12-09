@@ -1,0 +1,10 @@
+<div class="input-field" [ngClass]="classes">
+  <input
+    [type]="type" 
+    [(ngModel)]="value"
+    [placeholder]="placeholder"
+    (keydown.enter)="onEnter()"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+  >
+</div>

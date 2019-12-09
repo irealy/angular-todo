@@ -1,0 +1,24 @@
+:host
+  display: block
+  border-left: 1px solid #dde1e3
+  border-right: 1px solid #dde1e3
+
+  &:not(:last-child)
+    border-bottom: 1px solid #dde1e3
+  
+.todo-item
+  display: flex
+  align-items: center
+  background-color: white
+  padding: 10px 20px
+
+  &__checked
+    margin-right: 10px
+
+  &__title
+    font-size: 18px
+    font-weight: 500
+    font-family: 'Roboto', sans-serifs
+
+  &__delete
+    margin-left: auto

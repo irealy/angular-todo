@@ -1,0 +1,40 @@
+<div class="todo-container">
+  <h1 class="todo-container__title">
+    Todo application
+  </h1>
+  <div class="todo-container__body">
+    <div class="todo-container__check-all" (click)="todoList.toggleAll()">
+      check all
+    </div>
+    <div class="todo-container__input">
+      <app-input-field (addNewTask)="todoList.addNewTask($event)"></app-input-field>
+    </div>
+    <div class="todo-container__list" *ngIf="todoList.list.length > 0">
+      <app-todo-list
+        [list]="todoList.getList()"
+        (updateTask)="todoList.updateTask($event)"
+        (deleteTask)="todoList.deleteTask($event)"
+        (updateHeadingTask)="todoList.updateHeading($event)"
+      ></app-todo-list>
+    </div>
+    <div class="todo-container__footer">
+      <div class="todo-container__count">
+        {{todoList.todoCounter}}
+      </div>
+      <div class="todo-container__filters">
+        <button class="todo-container__filter" (click)="todoList.changeMode('all')">
+          All
+        </button>
+        <button class="todo-container__filter" (click)="todoList.changeMode('active')">
+          Active
+        </button>
+        <button class="todo-container__filter" (click)="todoList.changeMode('completed')">
+          Completed
+        </button>
+      </div>
+      <div class="todo-container__clear" (click)="todoList.clearCompleted()" *ngIf="todoList.availableTasks.length > 0">
+        clear completed
+      </div>
+    </div>
+  </div>
+</div>

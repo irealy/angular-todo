@@ -1,0 +1,25 @@
+<div class="todo-item" [ngClass]="classes">
+  <div class="todo-item__checked">
+    <input type="checkbox" [checked]="checked" (click)="onChecked()">
+  </div>
+  <div class="todo__wrapper" (dblclick)="onDbClick()">
+    <div class="todo-item__title" *ngIf="!edit">
+      {{ heading }}
+    </div>
+    <div class="todo-item__edit"
+      *ngIf="edit"
+      (keyup.enter)="onEdit()"
+    >
+      <input
+        #editField
+        type="text" 
+        [(ngModel)]="heading"
+        (blur)="onBlur()"
+        (keyup.esc)="onEsc()"
+      >
+    </div>
+  </div>
+  <button class="todo-item__delete" (click)="onDelete()">
+    delete
+  </button>
+</div>
