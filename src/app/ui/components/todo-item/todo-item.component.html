@@ -2,7 +2,7 @@
   <div class="todo-item__checked">
     <input type="checkbox" [checked]="checked" (click)="onChecked()">
   </div>
-  <div class="todo__wrapper" (dblclick)="onDbClick()">
+  <div class="todo-item__wrapper" (dblclick)="onDbClick()">
     <div class="todo-item__title" *ngIf="!edit">
       {{ heading }}
     </div>
@@ -13,14 +13,12 @@
       <input
         #editField
         type="text" 
-        [ngModel]="heading"
+        [ngModel]="value"
         (ngModelChange)="onHeadingChange($event)"
         (blur)="onBlur()"
         (keyup.esc)="onEsc()"
       >
     </div>
   </div>
-  <button class="todo-item__delete" (click)="onDelete()">
-    
-  </button>
+  <button class="todo-item__delete" (click)="onDelete()" *ngIf="!edit"></button>
 </div>

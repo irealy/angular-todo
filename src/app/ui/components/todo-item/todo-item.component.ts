@@ -27,8 +27,10 @@ export class TodoItemComponent {
   @ViewChild('editField', { static: false }) editField: ElementRef;
 
   edit = false;
+  value = '';
 
-  constructor(private detectChange: ChangeDetectorRef) {}
+  constructor(private detectChange: ChangeDetectorRef) {
+  }
 
   get classes(): object {
     return {
@@ -37,7 +39,7 @@ export class TodoItemComponent {
   }
 
   onHeadingChange(value: string): void {
-    this.heading = value;
+    this.value = value;
   }
 
   onChecked(): void {
@@ -53,6 +55,7 @@ export class TodoItemComponent {
   }
 
   onDbClick(): void {
+    this.value = this.heading;
     if (!this.edit) {
       this.edit = true;
       this.detectChange.detectChanges();
@@ -61,23 +64,21 @@ export class TodoItemComponent {
   }
 
   onEdit(): void {
-    this.updateHeadingData();
+    this.updateHeadingData(this.value);
   }
 
   onBlur(): void {
-    this.updateHeadingData();
+    this.updateHeadingData(this.heading);
   }
 
   onEsc(): void {
-    if (this.edit) {
-      this.updateHeadingData();
-    }
+    this.updateHeadingData(this.heading);
   }
 
-  updateHeadingData(): void {
+  updateHeadingData(heading: string): void {
     this.edit = false;
     this.handleUpdateHeading.emit({
-      heading: this.heading,
+      heading,
       id: this.id
     });
   }

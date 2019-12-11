@@ -2,11 +2,13 @@
   display: block
   border-left: 1px solid #dde1e3
   border-right: 1px solid #dde1e3
+  border-top: 1px solid #dde1e3
 
-  &:not(:last-child)
+  &:last-child
     border-bottom: 1px solid #dde1e3
-  
+
 .todo-item
+  position: relative
   display: flex
   align-items: center
   background-color: white
@@ -15,13 +17,32 @@
   &__checked
     margin-right: 10px
 
+  &__wrapper
+    width: 100%
+
   &__title
     font-size: 18px
+    white-space: nowrap
+    padding-right: 40px
+    overflow: hidden
+    text-overflow: ellipsis
     font-weight: 500
     font-family: 'Roboto', sans-serifs
 
+  &__edit
+    padding: 2px 0
+    input
+      width: 100%
+      font-size: 18px
+      font-weight: 500
+      font-family: 'Roboto', sans-serifs
+
   &__delete
     margin-left: auto
+    position: absolute
+    top: 50%
+    right: 10px
+    transform: translateY(-50%)
     color: #f3f3f4
     &:after
       content: '×'

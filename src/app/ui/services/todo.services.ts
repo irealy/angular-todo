@@ -78,7 +78,7 @@ export default class TodoService {
   }
 
   get availableTasks(): TodoItem[] {
-    return this.getFilteredList({ completed: false });
+    return this.getFilteredList({ completed: true });
   }
 
 

@@ -19,7 +19,7 @@
         (updateHeadingTask)="todoList.updateHeading($event)"
       ></app-todo-list>
     </div>
-    <div class="todo-container__footer">
+    <div class="todo-container__footer" *ngIf="todoList.list.length">
       <div class="todo-container__count">
         {{todoList.todoCounter}}
       </div>
@@ -35,7 +35,7 @@
         </button>
       </div>
       <div class="todo-container__clear" (click)="todoList.clearCompleted()" *ngIf="todoList.availableTasks.length">
-        clear completed
+        Clear completed
       </div>
     </div>
   </div>
