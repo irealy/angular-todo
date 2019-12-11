@@ -5,13 +5,12 @@ import { TodoMode } from '../models/todo-mode';
 @Injectable({
   providedIn: 'root'
 })
-
 export default class TodoService {
   list: TodoItem[] = [];
   mode: TodoMode = 'all';
   toggleFlag = false;
 
-  getList(): object[] {
+  getList(): TodoItem[] {
     switch (this.mode) {
       case 'all':
         return this.list;
@@ -30,7 +29,7 @@ export default class TodoService {
     this.mode = mode;
   }
 
-  addNewTask(heading: string) {
+  addNewTask(heading: string): void {
     this.list = [...this.list, {
       heading,
       checked: false,
@@ -38,16 +37,16 @@ export default class TodoService {
     }];
   }
 
-  updateTask(task: { id: number, checked: boolean}) {
+  updateTask(task: { id: number, checked: boolean}): void {
     const { id, checked } = task;
     const index = this.findTaskIndex(id);
-    this.list[index].checked = checked;
+    this.list[index] = {...this.list[index], checked};
   }
 
   updateHeading(value: { heading: string, id: number}): void {
     const { id, heading } = value;
     const index = this.findTaskIndex(id);
-    this.list[index].heading = heading;
+    this.list[index] = {...this.list[index], heading};
   }
 
   deleteTask(id: number) {

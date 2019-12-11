@@ -1,7 +1,8 @@
 <div class="input-field" [ngClass]="classes">
   <input
     [type]="type" 
-    [(ngModel)]="value"
+    [ngModel]="value"
+    (ngModelChange)="onChange($event)"
     [placeholder]="placeholder"
     (keydown.enter)="onEnter()"
     (focus)="onFocus()"

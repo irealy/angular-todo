@@ -1,6 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import TodoService from '../../services/todo.services';
-import { TodoItem } from '../../models/todo-item';
 
 @Component({
   selector: 'app-todo-container',
@@ -9,13 +8,10 @@ import { TodoItem } from '../../models/todo-item';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [TodoService]
 })
-export class TodoContainerComponent implements OnInit {
+export class TodoContainerComponent {
 
   constructor(
     private todoList: TodoService
   ) {}
-
-  ngOnInit() {
-  }
 
 }

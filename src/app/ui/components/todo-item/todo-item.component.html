@@ -13,13 +13,14 @@
       <input
         #editField
         type="text" 
-        [(ngModel)]="heading"
+        [ngModel]="heading"
+        (ngModelChange)="onHeadingChange($event)"
         (blur)="onBlur()"
         (keyup.esc)="onEsc()"
       >
     </div>
   </div>
   <button class="todo-item__delete" (click)="onDelete()">
-    delete
+    
   </button>
 </div>

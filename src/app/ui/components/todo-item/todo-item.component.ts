@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   Input,
   Output,
   EventEmitter,
@@ -16,14 +15,14 @@ import {
   styleUrls: ['./todo-item.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TodoItemComponent implements OnInit {
+export class TodoItemComponent {
   @Input() heading: string;
   @Input() checked = false;
   @Input() id: number;
 
-  @Output() handleUpdate: EventEmitter<object> = new EventEmitter<object>();
-  @Output() handleDelete: EventEmitter<number> = new EventEmitter<number>();
-  @Output() handleUpdateHeading: EventEmitter<object> = new EventEmitter<object>();
+  @Output() handleUpdate = new EventEmitter<object>();
+  @Output() handleDelete = new EventEmitter<number>();
+  @Output() handleUpdateHeading = new EventEmitter<object>();
 
   @ViewChild('editField', { static: false }) editField: ElementRef;
 
@@ -31,12 +30,14 @@ export class TodoItemComponent implements OnInit {
 
   constructor(private detectChange: ChangeDetectorRef) {}
 
-  ngOnInit() {}
-
   get classes(): object {
     return {
       'is-edit': this.edit
     };
+  }
+
+  onHeadingChange(value: string): void {
+    this.heading = value;
   }
 
   onChecked(): void {
@@ -64,16 +65,16 @@ export class TodoItemComponent implements OnInit {
   }
 
   onBlur(): void {
-    this.updateHeadingData()
+    this.updateHeadingData();
   }
 
   onEsc(): void {
     if (this.edit) {
-      this.updateHeadingData()
+      this.updateHeadingData();
     }
   }
 
-  updateHeadingData() {
+  updateHeadingData(): void {
     this.edit = false;
     this.handleUpdateHeading.emit({
       heading: this.heading,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-input-field',
@@ -6,25 +6,23 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
   styleUrls: ['./input-field.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputFieldComponent implements OnInit {
+export class InputFieldComponent {
   @Input() type = 'text';
   @Input() placeholder = 'What needs to be done?';
-  @Input() state: 'default' | 'focus' | 'error' = 'default';
+  @Input() state: 'default' | 'active' | 'error' = 'default';
 
-  @Output() addNewTask: EventEmitter<string> = new EventEmitter<string>();
+  @Output() addNewTask = new EventEmitter<string>();
 
   value = '';
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   get classes(): object {
     return {
-      'is-active': this.state === 'focus',
-      'is-error': this.state === 'error'
+      [`is-${this.state}`]: !!this.state
     };
+  }
+
+  onChange(value: string): void {
+    this.value = value;
   }
 
   onEnter(): void {
@@ -33,7 +31,7 @@ export class InputFieldComponent implements OnInit {
   }
 
   onFocus(): void {
-    this.state = 'focus';
+    this.state = 'active';
   }
 
   onBlur(): void {

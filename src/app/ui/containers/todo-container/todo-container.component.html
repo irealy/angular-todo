@@ -3,13 +3,15 @@
     Todo application
   </h1>
   <div class="todo-container__body">
-    <div class="todo-container__check-all" (click)="todoList.toggleAll()">
-      check all
+    <div class="todo-container__header">
+      <div class="todo-container__check-all" *ngIf="todoList.list.length">
+        <input type="checkbox" (click)="todoList.toggleAll()">
+      </div>
+      <div class="todo-container__input">
+        <app-input-field (addNewTask)="todoList.addNewTask($event)"></app-input-field>
+      </div>
     </div>
-    <div class="todo-container__input">
-      <app-input-field (addNewTask)="todoList.addNewTask($event)"></app-input-field>
-    </div>
-    <div class="todo-container__list" *ngIf="todoList.list.length > 0">
+    <div class="todo-container__list" *ngIf="todoList.list.length">
       <app-todo-list
         [list]="todoList.getList()"
         (updateTask)="todoList.updateTask($event)"
@@ -32,7 +34,7 @@
           Completed
         </button>
       </div>
-      <div class="todo-container__clear" (click)="todoList.clearCompleted()" *ngIf="todoList.availableTasks.length > 0">
+      <div class="todo-container__clear" (click)="todoList.clearCompleted()" *ngIf="todoList.availableTasks.length">
         clear completed
       </div>
     </div>

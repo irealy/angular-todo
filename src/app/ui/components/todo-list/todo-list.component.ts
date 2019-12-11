@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { TodoItem } from '../../models/todo-item';
 
 @Component({
@@ -7,31 +7,26 @@ import { TodoItem } from '../../models/todo-item';
   styleUrls: ['./todo-list.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent {
   @Input() list: TodoItem[];
 
-  @Output() updateTask: EventEmitter<object> = new EventEmitter<object>();
-  @Output() deleteTask: EventEmitter<number> = new EventEmitter<number>();
-  @Output() updateHeadingTask: EventEmitter<object> = new EventEmitter<object>();
+  @Output() updateTask = new EventEmitter<object>();
+  @Output() deleteTask = new EventEmitter<number>();
+  @Output() updateHeadingTask = new EventEmitter<object>();
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  update(value: object) {
+  update(value: object): void {
     this.updateTask.emit(value);
   }
 
-  delete(id: number) {
+  delete(id: number): void {
     this.deleteTask.emit(id);
   }
 
-  updateHeading(value: object) {
+  updateHeading(value: object): void {
     this.updateHeadingTask.emit(value);
   }
 
-  trackByFn(index: number, item: {id: number}) {
+  trackByFn(index: number, item: {id: number}): number {
     return item.id;
   }
 
